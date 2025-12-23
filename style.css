@@ -1,0 +1,249 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap");
+
+/* ===============================
+   Design Tokens
+================================ */
+
+:root {
+  /* Page */
+  --bg-page: #f1f4f9;
+  --bg-panel: #ffffff;
+  --bg-list: #f8fafc;
+
+  /* Text */
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #94a3b8;
+
+  /* Accent */
+  --accent: #2563eb;
+  --accent-soft: #dbeafe;
+
+  /* Borders & Shadows */
+  --border-subtle: #e2e8f0;
+
+  --shadow-sm: 0 2px 6px rgba(15, 23, 42, 0.08);
+  --shadow-md: 0 10px 25px rgba(15, 23, 42, 0.12);
+
+  /* Buttons */
+  --btn-bg: #ffffff;
+  --btn-text: #0f172a;
+  --btn-border: #e2e8f0;
+  --btn-hover: #f1f5f9;
+}
+
+/* ===============================
+   Dark Mode Overrides
+================================ */
+
+[data-theme="dark"] {
+  /* Page */
+  --bg-page: #0f172a;
+  --bg-panel: #020617;
+  --bg-list: #020617;
+
+  /* Text */
+  --text-primary: #e5e7eb;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+
+  /* Accent */
+  --accent: #60a5fa;
+  --accent-soft: rgba(96, 165, 250, 0.2);
+
+  /* Borders & Shadows */
+  --border-subtle: #1e293b;
+
+  --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.6);
+  --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.7);
+
+  /* Buttons */
+  --btn-bg: #020617;
+  --btn-text: #e5e7eb;
+  --btn-border: #1e293b;
+  --btn-hover: #020617;
+}
+
+/* ===============================
+   Reset
+================================ */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Nunito", system-ui, sans-serif;
+  background: var(--bg-page);
+  color: var(--text-primary);
+  line-height: 1.5;
+}
+
+/* ===============================
+   Layout
+================================ */
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 3rem;
+}
+
+h1 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+}
+
+/* ===============================
+   Toolbar
+================================ */
+
+.toolbar {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.toolbar button {
+  padding: 0.45rem 0.9rem;
+  border-radius: 6px;
+  border: 1px solid var(--btn-border);
+  background: var(--btn-bg);
+  color: var(--btn-text);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.toolbar button:hover {
+  background: var(--btn-hover);
+  border-color: var(--accent);
+}
+
+#theme-toggle {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* ===============================
+   Input
+================================ */
+
+.input-container {
+  margin-bottom: 2rem;
+}
+
+.input-container input {
+  width: 100%;
+  max-width: 480px;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-panel);
+  color: var(--text-primary);
+}
+
+/* ===============================
+   Board
+================================ */
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+.list {
+  background: var(--bg-list);
+  border-radius: 14px;
+  padding: 1rem;
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-md);
+}
+
+.list h2 {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 1rem;
+  color: var(--text-secondary);
+}
+
+/* ===============================
+   Cards
+================================ */
+
+.card {
+  position: relative;
+  background: var(--bg-panel);
+  border-radius: 10px;
+  padding: 0.6rem 2.2rem 0.6rem 0.6rem;
+  margin-bottom: 0.75rem;
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-sm);
+  cursor: grab;
+}
+
+.card.dragging {
+  opacity: 0.85;
+  cursor: grabbing;
+  box-shadow: var(--shadow-md);
+}
+
+.card .title {
+  font-weight: 600;
+  outline: none;
+}
+
+.card .meta {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+/* Priority indicators */
+.card.priority-high {
+  border-left: 4px solid #dc2626;
+}
+
+.card.priority-normal {
+  border-left: 4px solid #2563eb;
+}
+
+.card.priority-low {
+  border-left: 4px solid #64748b;
+}
+
+/* ===============================
+   Delete Button
+================================ */
+
+.delete-button {
+  position: absolute;
+  right: 6px;
+  top: 6px;
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.delete-button:hover {
+  color: #dc2626;
+}
+
+/* ===============================
+   Drag Target
+================================ */
+
+.list.drag-over {
+  outline: 2px dashed var(--accent);
+  outline-offset: -6px;
+}

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <title>Kanban Board</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="container">
+    <h1>Kanban Board</h1>
+
+    <div class="toolbar">
+      <button id="theme-toggle">Dark mode</button>
+      <button id="export-btn">Export</button>
+      <button id="import-btn">Import</button>
+      <input type="file" id="import-input" hidden />
+    </div>
+
+    <div class="input-container">
+      <input
+        type="text"
+        id="new-card-input"
+        placeholder="Add a new card and press Enter"
+      />
+    </div>
+
+    <div class="board">
+      <div class="list" id="backlog" data-wip="999">
+        <h2>Backlog <span class="meta"></span></h2>
+      </div>
+
+      <div class="list" id="todo" data-wip="5">
+        <h2>To Do <span class="meta"></span></h2>
+      </div>
+
+      <div class="list" id="in-progress" data-wip="3">
+        <h2>In Progress <span class="meta"></span></h2>
+      </div>
+
+      <div class="list" id="done" data-wip="999">
+        <h2>Done <span class="meta"></span></h2>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
