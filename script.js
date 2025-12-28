@@ -71,6 +71,7 @@ function createCard(card) {
 
 function attachEvents(card) {
   const title = card.querySelector('.title');
+  const deleteBtn = card.querySelector('.delete-button');
 
   /* Inline editing */
   title.onblur = () => {
@@ -115,9 +116,9 @@ function attachEvents(card) {
     }
   };
 
-  /* Delete button */
-  card.querySelector('.delete-button').onclick = () =>
-    removeCard(card.dataset.id);
+  /* Delete button — FIXED */
+  deleteBtn.onclick = () => removeCard(card.dataset.id);
+  deleteBtn.onpointerdown = e => e.stopPropagation();
 
   /* Pointer dragging */
   card.addEventListener('pointerdown', pointerStart);
@@ -128,6 +129,10 @@ function attachEvents(card) {
 ===================================== */
 
 function pointerStart(e) {
+  // Prevent drag when clicking delete button
+  if (e.target.closest('.delete-button')) return;
+
+  // Prevent drag when editing text
   if (e.target.isContentEditable) return;
 
   activeCard = e.currentTarget;
